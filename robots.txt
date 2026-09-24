@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://maxrondelli.github.io/sitemap.xml

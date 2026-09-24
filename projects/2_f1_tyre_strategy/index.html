@@ -1,0 +1,153 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Massimo Rondelli </title> <meta name="author" content="Massimo Rondelli"> <meta name="description" content="LSTM, GRU and MLP models to predict the best tyre compound lap by lap during a Formula 1 race"> <meta name="keywords" content="computer science, phd, research, publications"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&amp;family=Roboto+Slab:wght@100..900&amp;family=Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://maxrondelli.github.io/projects/2_f1_tyre_strategy/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav sticky-bottom-footer"> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Massimo</span> Rondelli </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Formula 1 Tyre Strategy Prediction</h1> <p class="post-description">LSTM, GRU and MLP models to predict the best tyre compound lap by lap during a Formula 1 race</p> </header> <article> <p>Tyre strategy is one of the most decisive factors in a Formula 1 race: teams must balance the grip, durability and speed of each compound against track temperature, tyre wear and weather. This project, developed for my B.Sc. thesis, studies recurrent and feed-forward neural networks (<strong>LSTM</strong>, <strong>GRU</strong> and <strong>MLP</strong>) to predict the best tyre for each lap of a race, using telemetry data from the <a href="https://theoehrly.github.io/Fast-F1/" rel="external nofollow noopener" target="_blank">FastF1</a> library. The “best tyre” is defined through a best-lap-time metric.</p> <p><strong>Results.</strong> The GRU consistently outperformed the other models, reaching <strong>51.4% accuracy</strong> (learning rate 1e-4), against 28.1% for the LSTM, 27.1% for the MLP, and 24.5% for a blind classifier that predicts from class priors only. Its recurrent structure captures the sequential nature of race data better than the alternatives.</p> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/projects/f1-blind-classifier-480.webp 480w,/assets/img/projects/f1-blind-classifier-800.webp 800w,/assets/img/projects/f1-blind-classifier-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/projects/f1-blind-classifier.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Model accuracy comparison" loading="eager" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/projects/f1-tyre-usage-480.webp 480w,/assets/img/projects/f1-tyre-usage-800.webp 800w,/assets/img/projects/f1-tyre-usage-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/projects/f1-tyre-usage.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Tyre usage percentages" loading="eager" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> </div> </div> <div class="caption"> Left: accuracy of GRU, LSTM and MLP compared with a blind classifier. Right: tyre compound usage in the dataset. </div> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/projects/f1-results-table-480.webp 480w,/assets/img/projects/f1-results-table-800.webp 800w,/assets/img/projects/f1-results-table-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/projects/f1-results-table.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Accuracy and loss per model" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> </div> </div> <div class="caption"> Accuracy and loss of each model across learning rates. </div> <p><strong>Links:</strong> <a href="https://github.com/MaxRondelli/Formula-1-Tyre-Strategy-Prediction" rel="external nofollow noopener" target="_blank">Code</a> · <a href="https://amslaurea.unibo.it/id/eprint/27922/" rel="external nofollow noopener" target="_blank">Thesis</a></p> <p>Thesis: <a class="citation" href="#rondelli2023formula1">(Rondelli, 2023)</a></p> </article> <h2>References</h2> <div class="publications"> <h2 class="bibliography">2023</h2> <ol class="bibliography"><li> <div class="row"> <div class="col col-sm-2 abbr"> <abbr class="badge rounded w-100" style="background-color:#bb2e29"> <a href="https://amslaurea.unibo.it/id/eprint/27922/" rel="external nofollow noopener" target="_blank">B.Sc. Thesis</a> </abbr> </div> <div id="rondelli2023formula1" class="col-sm-8"> <div class="title">The Future of Formula 1 Racing: Neural Networks to Predict Tyre Strategy</div> <div class="author"> <em>Massimo Rondelli</em> </div> <div class="periodical"> <em>University of Bologna</em>, Mar 2023 </div> <div class="periodical"> B.Sc. in Computer Science and Management.<br>Supervisor: Elena Loli Piccolomini<br>Co-Supervisor: Davide Evangelista </div> <div class="links"> <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a> <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a> <a href="https://amslaurea.unibo.it/id/eprint/27922/" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a> <a href="https://amslaurea.unibo.it/27922/1/Tesi_Massimo_Rondelli.pdf" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a> </div> <div class="badges"> </div> <div class="abstract hidden"> <p>La Formula 1 è uno dei motorsport più popolari al mondo, con milioni di fan che seguono ogni gara. È uno sport altamente competitivo e tecnologicamente avanzato, con team che cercano costantemente modi per ottimizzare le loro prestazioni e ottenere un vantaggio competitivo. Uno dei fattori critici nella performance di un team è la scelta delle gomme durante una gara. Di solito sono disponibili tre diversi tipi di pneumatici per ogni gara, con diversi livelli di aderenza, durata e velocità. Le gomme più morbidi offrono maggior aderenza ma si consumano più velocemente, mentre quelle più dure durano più a lungo ma offrono meno aderenza. I team devono scegliere quali utilizzare durante la gara in base a una serie di fattori, tra cui la temperatura della pista, l’usura delle gomme e le condizioni meteorologiche. La strategia delle gomme è un aspetto essenziale della performance di un team, poiché fare le scelte giuste può fornire un vantaggio competitivo. I team devono bilanciare la necessità di tempi sul giro ottimali con la necessità di ridurre al minimo il numero di pit stop richiesti durante la gara. Ciò richiede un’analisi accurata dei dati, compresi i tassi di usura delle gomme e i tempi sul giro, per determinare il momento ottimale per cambiare le gomme e quale gomma utilizzare. Lo scopo di questa tesi di laurea è quello di sviluppare e implementare reti neurali, in particolare LSTM e GRU, per prevedere la strategia delle gomme durante una gara di Formula 1. Il progetto mira a utilizzare i dati telemetrici provenienti dall’API "FastF1" e sviluppare un modello che possa prevedere con precisione quando e quali cambi di gomme sono richiesti durante una gara. I risultati del progetto possono fornire informazioni sull’efficacia di questi algoritmi in questo contesto e contribuire allo sviluppo di modelli di previsione delle gomme più avanzati in futuro.</p> </div> <div class="bibtex hidden"> <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@mastersthesis</span><span class="p">{</span><span class="nl">rondelli2023formula1</span><span class="p">,</span>
+  <span class="na">title</span> <span class="p">=</span> <span class="s">{The Future of Formula 1 Racing: Neural Networks to Predict Tyre Strategy}</span><span class="p">,</span>
+  <span class="na">author</span> <span class="p">=</span> <span class="s">{Rondelli, Massimo}</span><span class="p">,</span>
+  <span class="na">school</span> <span class="p">=</span> <span class="s">{University of Bologna}</span><span class="p">,</span>
+  <span class="na">year</span> <span class="p">=</span> <span class="s">{2023}</span><span class="p">,</span>
+  <span class="na">month</span> <span class="p">=</span> <span class="nv">mar</span><span class="p">,</span>
+  <span class="na">note</span> <span class="p">=</span> <span class="s">{B.Sc. in Computer Science and Management.&lt;br&gt;Supervisor: Elena Loli Piccolomini&lt;br&gt;Co-Supervisor: Davide Evangelista}</span><span class="p">,</span>
+  <span class="na">keywords</span> <span class="p">=</span> <span class="s">{Formula 1, Reti Neurali, Deep Learning, Predizione strategia pneumatici, LSTM, GRU, FastF1}</span><span class="p">,</span>
+  <span class="na">language</span> <span class="p">=</span> <span class="s">{Italian}</span>
+<span class="p">}</span></code></pre></figure> </div> </div> </div> </li></ol> </div> </div> </div> <footer class="sticky-bottom mt-5" role="contentinfo"> <div class="container"> © Copyright 2026 Massimo Rondelli. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <style>
+  /* Keep the footer at the bottom of the window on short pages; on long pages it simply follows the content. */
+  body.sticky-bottom-footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  body.sticky-bottom-footer > .container[role="main"] {
+    flex: 1 0 auto;
+    width: 100%;
+  }
+
+  /* Section headings of the publications list (years) and projects list (research / personal).
+     The theme draws them in --global-divider-color, which is barely visible. */
+  .publications h2.bibliography {
+    color: var(--global-text-color);
+    font-weight: 50;
+    border-top-color: var(--global-text-color-light);
+  }
+</style> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-publications",
+          title: "publications",
+          description: "publications in reversed chronological order.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "research projects and personal side projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "news-started-my-phd-in-computer-science-and-engineering-at-the-university-of-bologna-in-collaboration-with-luna-rossa-team-tada",
+          title: 'Started my PhD in Computer Science and Engineering at the University of Bologna,...',
+          description: "",
+          section: "News",},{id: "news-the-paper-blenderrag-high-fidelity-3d-object-generation-via-retrieval-augmented-code-synthesis-was-published-as-a-preprint-in-arxiv",
+          title: 'The paper BlenderRAG: High-Fidelity 3D Object Generation via Retrieval-Augmented Code Synthesis was published,...',
+          description: "",
+          section: "News",},{id: "news-the-paper-from-reasoning-to-code-grpo-optimization-for-underrepresented-languages-was-accepted-at-international-conference-on-logic-programming-iclp-2026",
+          title: 'The paper From Reasoning to Code: GRPO Optimization for Underrepresented Languages was accepted...',
+          description: "",
+          section: "News",},{id: "news-the-paper-from-reasoning-to-code-grpo-optimization-for-underrepresented-languages-was-published-on-theory-and-practice-of-logic-programming-journal",
+          title: 'The paper From Reasoning to Code: GRPO Optimization for Underrepresented Languages was published...',
+          description: "",
+          section: "News",},{id: "projects-from-reasoning-to-code-grpo-for-underrepresented-languages",
+          title: 'From Reasoning to Code: GRPO for Underrepresented Languages',
+          description: "Reinforcement learning with interpreter feedback to teach small LLMs to write Prolog",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/0_llm_format/";
+            },},{id: "projects-blenderrag",
+          title: 'BlenderRAG',
+          description: "High-fidelity 3D object generation via retrieval-augmented Blender code synthesis",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_blenderrag/";
+            },},{id: "projects-formula-1-tyre-strategy-prediction",
+          title: 'Formula 1 Tyre Strategy Prediction',
+          description: "LSTM, GRU and MLP models to predict the best tyre compound lap by lap during a Formula 1 race",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_f1_tyre_strategy/";
+            },},{id: "projects-hrnet-with-custom-dataset",
+          title: 'HRNet with Custom Dataset',
+          description: "Training High-Resolution Networks for human pose estimation on a custom COCO-style keypoint dataset",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_hrnet_custom_dataset/";
+            },},{id: "projects-human-activity-recognition-with-lstm-on-m5stack",
+          title: 'Human Activity Recognition with LSTM on M5Stack',
+          description: "An LSTM trained on the UCI HAR dataset and deployed on an M5Stack Gray for real-time on-device inference",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_har_m5stack/";
+            },},{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/MaxRondelli", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/massimo-rondelli-403207136", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=622bPA8AAAAJ", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
