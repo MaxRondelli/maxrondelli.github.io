@@ -1,0 +1,55 @@
+{%- comment -%}
+  One row of the projects list, mirroring the markup of al-folio's publication entries (_layouts/bib.liquid)
+  so it inherits the same styling and the "Abs"-style toggle from common.js.
+
+  Front matter used from each file in _projects/:
+    title, importance, category        required
+    badge                              short label on the left (a key in _data/venues.yml gives it a color and link)
+    img                                thumbnail under the badge (path under assets/img/)
+    authors                            HTML author line, e.g. "Jane Doe, <em>Massimo Rondelli</em>"
+    description                        one-line subtitle (shown when there is no author line)
+    period                             date / venue line, e.g. "TPLP 2026 · Python, PyTorch"
+    summary                            text revealed by the "Summary" button
+    code, paper, arxiv, dataset, website   link buttons
+  The page body of the project file is shown via the "Details" button.
+{%- endcomment -%}
+{% assign p = include.project %}
+{% assign venue = site.data.venues[p.badge] %}
+<div class="row">
+  <div class="col col-sm-2 abbr">
+    {% if p.badge %}
+      <abbr class="badge rounded w-100" {% if venue.color %}style="background-color:{{ venue.color }}"{% endif %}>
+        {% if venue.url %}<a href="{{ venue.url }}">{{ p.badge }}</a>{% else %}<div>{{ p.badge }}</div>{% endif %}
+      </abbr>
+    {% endif %}
+    {% if p.img %}
+      {% include figure.liquid loading="eager" path=p.img sizes="200px" class="preview z-depth-1 rounded" zoomable=true alt=p.title %}
+    {% endif %}
+  </div>
+
+  <div class="col-sm-8">
+    <div class="title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></div>
+    {% if p.authors %}
+      <div class="author">{{ p.authors }}</div>
+    {% elsif p.description %}
+      <div class="author">{{ p.description }}</div>
+    {% endif %}
+    {% if p.period %}
+      <div class="periodical"><em>{{ p.period }}</em></div>
+    {% endif %}
+
+    <div class="links">
+      {% if p.summary %}<a class="abstract btn btn-sm z-depth-0" role="button">Summary</a>{% endif %}
+      <a href="{{ p.url | relative_url }}" class="btn btn-sm z-depth-0" role="button">Details</a>
+      {% if p.code %}<a href="{{ p.code }}" class="btn btn-sm z-depth-0" role="button">Code</a>{% endif %}
+      {% if p.paper %}<a href="{{ p.paper }}" class="btn btn-sm z-depth-0" role="button">Paper</a>{% endif %}
+      {% if p.arxiv %}<a href="https://arxiv.org/abs/{{ p.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>{% endif %}
+      {% if p.dataset %}<a href="{{ p.dataset }}" class="btn btn-sm z-depth-0" role="button">Dataset</a>{% endif %}
+      {% if p.website %}<a href="{{ p.website }}" class="btn btn-sm z-depth-0" role="button">Website</a>{% endif %}
+    </div>
+
+    {% if p.summary %}
+      <div class="abstract hidden"><p>{{ p.summary }}</p></div>
+    {% endif %}
+  </div>
+</div>

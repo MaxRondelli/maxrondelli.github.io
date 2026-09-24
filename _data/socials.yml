@@ -1,0 +1,6 @@
+# Social links shown as icons on the about page, above the news (rendered by {% social_links %} in _pages/about.md).
+# The icons are displayed in the order they are defined here.
+# For other supported keys (email, orcid_id, dblp_url, x_username, ...) see https://github.com/george-gca/jekyll-socials
+github_username: MaxRondelli
+linkedin_username: massimo-rondelli-403207136
+scholar_userid: 622bPA8AAAAJ

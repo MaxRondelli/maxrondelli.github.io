@@ -1,0 +1,5 @@
+# Maps a co-author last name (lowercase) to their first-name variants and a homepage.
+# Co-authors listed here get their names linked on the publications page. Example:
+# "gabbrielli":
+#   - firstname: ["Maurizio", "M."]
+#     url: https://example.com

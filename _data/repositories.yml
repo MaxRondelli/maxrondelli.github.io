@@ -1,0 +1,8 @@
+github_users:
+  - MaxRondelli
+
+repo_description_lines_max: 2
+
+# TODO: list the repositories you want to showcase
+github_repos:
+  # - MaxRondelli/your-repo

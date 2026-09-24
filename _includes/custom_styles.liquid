@@ -1,0 +1,24 @@
+{%- comment -%}
+  Site-wide CSS overrides, loaded on every page from _includes/footer.liquid.
+  Colors use the theme's variables, which switch automatically between light and dark mode.
+{%- endcomment -%}
+<style>
+  /* Keep the footer at the bottom of the window on short pages; on long pages it simply follows the content. */
+  body.sticky-bottom-footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  body.sticky-bottom-footer > .container[role="main"] {
+    flex: 1 0 auto;
+    width: 100%;
+  }
+
+  /* Section headings of the publications list (years) and projects list (research / personal).
+     The theme draws them in --global-divider-color, which is barely visible. */
+  .publications h2.bibliography {
+    color: var(--global-text-color);
+    font-weight: 50;
+    border-top-color: var(--global-text-color-light);
+  }
+</style>

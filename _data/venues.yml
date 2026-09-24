@@ -1,0 +1,27 @@
+# Maps a venue abbreviation (the `abbr` field in papers.bib) to a link and badge color.
+"TPLP":
+  url: https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming
+  color: "#1e5a8a"
+
+"CILC":
+  url: https://ceur-ws.org/Vol-4244/
+  color: "#2e7d32"
+
+"arXiv":
+  url: https://arxiv.org/
+  color: "#b31b1b"
+
+"M.Sc. Thesis":
+  url: https://amslaurea.unibo.it/id/eprint/35534
+  color: "#bb2e29"
+
+"B.Sc. Thesis":
+  url: https://amslaurea.unibo.it/id/eprint/27922/
+  color: "#bb2e29"
+
+# Badges used on the projects page (no link)
+"Computer Vision":
+  color: "#6a4c93"
+
+"Embedded ML":
+  color: "#e07a1f"
