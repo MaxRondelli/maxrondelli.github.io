@@ -45,10 +45,24 @@ I am always happy to chat about research and collaborations, so feel free to rea
   <a href="https://scholar.google.com/citations?user=622bPA8AAAAJ" target="_blank">Google Scholar</a>
 </p>
 
-<!-- Same light weight for first name and surname in the page heading (the theme makes the first name bold). -->
+<!-- Same weight for first name and surname in the page heading (the theme makes the first name bold),
+     and a small profile photo on phones. -->
 <style>
   .post-header .post-title,
   .post-header .post-title .font-weight-bold {
     font-weight: 500;
+  }
+
+  /* Phones (below the theme's 576px breakpoint): small photo floated next to the bio instead of full width on top,
+     and no address block under it. */
+  @media (max-width: 575.98px) {
+    .profile.float-right {
+      width: 34%;
+      margin-left: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .profile .more-info {
+      display: none;
+    }
   }
 </style>
