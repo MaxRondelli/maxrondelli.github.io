@@ -1,0 +1,7 @@
+{%- comment -%}
+  Prints the page's "last updated" date, computed by _plugins/last_modified.rb from the files
+  listed in the page's `last_modified_from` front matter.
+{%- endcomment -%}
+{%- if page.last_modified -%}
+  <p class="last-modified">Last updated: {{ page.last_modified | date: "%-d %B %Y" }}</p>
+{%- endif -%}

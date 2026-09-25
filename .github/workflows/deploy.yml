@@ -15,6 +15,7 @@ on:
       - "**.yml"
       - "Gemfile"
       - "Gemfile.lock"
+      - "_plugins/**"
       - "!docs/**"
       - "!README.md"
   pull_request:
@@ -31,6 +32,7 @@ on:
       - "**.yml"
       - "Gemfile"
       - "Gemfile.lock"
+      - "_plugins/**"
       - "!docs/**"
       - "!README.md"
   workflow_dispatch:
@@ -45,6 +47,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full git history, needed by _plugins/last_modified.rb
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:

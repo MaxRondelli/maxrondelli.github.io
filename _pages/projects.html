@@ -6,9 +6,12 @@ description: research projects and personal side projects.
 nav: true
 nav_order: 2
 display_categories: [research, personal]
+last_modified_from: # files whose latest change sets the "Last updated" date
+  - _projects/*.md
 ---
 
 <!-- Projects listed in the same style as the publications page. Each entry lives in _projects/; see _includes/project_entry.liquid for the fields. -->
+{% include last_modified.liquid %}
 <div class="publications projects-list">
   {% for category in page.display_categories %}
     {% assign sorted_projects = site.projects | where: "category", category | sort: "importance" %}
