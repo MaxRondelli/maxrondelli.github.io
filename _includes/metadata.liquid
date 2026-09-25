@@ -1,6 +1,7 @@
 {% comment %}
   Local copy of al_folio_core's _includes/metadata.liquid (v1.0.15). Only change: the <title> is always the
-  author name (no "page | " prefix), so every browser tab shows just "Massimo Rondelli".
+  author name (no "page | " prefix), so every browser tab shows just "Massimo Rondelli"; it also loads
+  _includes/custom_head.liquid (right after the metadata) for custom <head> content such as scripts.
 {% endcomment %}
 {% if site.enable_google_verification or site.enable_bing_verification %}
   <!-- Website verification -->
@@ -245,3 +246,5 @@
     }
   </script>
 {% endif %}
+
+{% include custom_head.liquid %}
